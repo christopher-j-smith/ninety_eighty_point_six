@@ -3,7 +3,7 @@ This repository contains the python (3.7) script and SQL File used to create the
 
 ## Instructions
   1. Download py file and sql file into a directory. Output csv files used to answer the analytics questions will be created in this directory. I recommend creating a new directory just for this process.
-  2. Edit the python script user_name, password and host variables to match an already installed and running Postgres server. A new database by the name of ninety_eight_point_six will be created on that server which will be the destination for all data transformations.
+  2. Edit the python script user_name, password and host variables to match an already installed and running Postgres server. A new database by the name of ninety_eight_point_six will be created on that server which will be the destination for all data transformations. (Lines 17,18,19)
   3. Execute the py file via command prompt/terminal.
   4. Three CSV files will be created which are used to answer the corresponding questions in the homework assignment.
 
