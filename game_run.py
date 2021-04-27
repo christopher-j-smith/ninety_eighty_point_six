@@ -79,8 +79,11 @@ def get_player_info(headers, url, iteration = 0):
             break
         else:
             for data in range(len(response)):
+                #iterating through the length of the response which is the number of player profiles in each response
                 builder_list=[response[data]['id']]
+                #first entry is the player id... very important!!!
                 for i in list(response[data]['data']):
+                    #data section has all of our dimensional data in either a string or dictionary that needs to be parsed
                     if type(response[data]['data'][i])== str:
                         #some of the responses are only strings, push these results straight to the builder list
                         builder_list.append(response[data]['data'][i])
@@ -99,6 +102,7 @@ def get_game_info(url):
     return(df)
 
 def create_database(db_name, engine_string):
+    """Pass a name to create a Postgres Database"""
     engine = create_engine(engine_string)
     conn = engine.connect()
     conn.execute("commit")
@@ -107,17 +111,20 @@ def create_database(db_name, engine_string):
     return engine_string
 
 def insert_data(dataframe, destination, engine_string):
+    """Inserts dataframe as a table in Postgres. Complete rip and replace"""
     #this works because of the low amount of data we have, if there is more than a couple hundred thousand, this needs further tweaking
     engine = create_engine(engine_string)
     dataframe.to_sql(name = destination, con = engine, if_exists = 'replace', index = False)
 
 def create_view(engine_string, sql):
+    """Executes SQL, used for view creation here but could be used for any execution""" 
     #this will create all the views to answer the analytics questions
     engine = create_engine(engine_string)
     conn = engine.connect()
     conn.execute(sql)
 
 def read_sql_file(sqlFile = 'ninety_eight_point_six.sql'):
+    """Read a specified semicolon delimited file and returns as a list of commands"""
     #I put all the necessary sql into a sql file and this reads all of it so the python code looks neater
     fd = open(sqlFile, 'r')
     sqlFile = fd.read()
@@ -126,6 +133,7 @@ def read_sql_file(sqlFile = 'ninety_eight_point_six.sql'):
     return sqlCommands
 
 def get_result_set(engine_string, sql, file_name):
+    """Executes SQL Queries and stores result set in specified tab delimited file"""
     #pushes the result sets straight into tab delimited csvs for analysis
     engine = create_engine(engine_string)
     df = pd.read_sql(sql = sql, con = engine)
