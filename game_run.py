@@ -6,6 +6,13 @@ from sqlalchemy import create_engine
 
 
 #normally these would go in a configuration table or file but in the name of succinctness we are going to name a lot of variables here
+##set up API headers and url, CURL was provided which makes life easy
+headers = {'Accept':'application/json'}
+api_url = 'https://x37sv76kth.execute-api.us-west-1.amazonaws.com/prod/users?page='
+
+#game history file
+game_url= 'https://s3-us-west-2.amazonaws.com/98point6-homework-assets/game_data.csv'
+
 #These variables need to be updated by the NinetyEightPointSix Tester, Database needs to be PostgreSQL
 user_name = 'postgres'
 password = 'root'
@@ -56,12 +63,6 @@ drop_columns = ['password'
                 ,'medium_picture_url'
                 ,'thumbnail_picture_url']
 
-##set up API headers and url, CURL was provided which makes life easy
-headers = {'Accept':'application/json'}
-api_url = 'https://x37sv76kth.execute-api.us-west-1.amazonaws.com/prod/users?page='
-
-#game history file
-game_url= 'https://s3-us-west-2.amazonaws.com/98point6-homework-assets/game_data.csv'
 
 def get_player_info(headers, url, iteration = 0):
     """utilizes 98point6 player api to grab all player information and assemble it into a list of lists
