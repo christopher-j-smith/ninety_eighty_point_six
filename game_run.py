@@ -133,7 +133,8 @@ def get_result_set(engine_string, sql, file_name):
 
 def main():
     engine_string = create_engine_string(user_name, password, host)
-    new_engine_string = create_database('test', engine_string)
+    new_engine_string = create_database('ninety_eight_point_six', engine_string)
+    #new engine string is created which specifies to use the database that was created
     print('Database Created')
     results_list = get_player_info(headers, api_url)
     print('Player Info Downloaded')
