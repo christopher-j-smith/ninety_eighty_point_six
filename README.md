@@ -6,8 +6,8 @@ This is the sql file that has all the sql used to create the views along with th
 
 ## game_run.py
 Python file where all the magic happens. Basic workflow is:
-  1. Create PostgreSQL Database - REQUIRES A POSTGRES SERVER TO BE SET UP. Connection string is modified by the tester on lines 10-12. 
-  2. Loop through iterative calls to the Player API and parse result set into list until an empty array is returned. -Final list of lists is converted into a dataframe-
+  1. Create PostgreSQL Database __REQUIRES A POSTGRES SERVER TO BE SET UP__. Connection string is modified by the tester on lines 10-12. 
+  2. Loop through iterative calls to the Player API and parse result set into list until an empty array is returned. __Final list of lists is converted into a dataframe__
   3. Read Game Results csv directly into a dataframe. 
   4. Load both dataframes into their respective tables leveraging SQL Alchemies engine connector and Panda to_sql function
   5. Read SQL File and iterate through to create views and result set from views
